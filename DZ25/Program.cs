@@ -19,23 +19,41 @@ Print3DArray(array);
 int[,,] CreateRandom3DArray(int m, int n, int k)
 {
     int[,,] array = new int[m, n, k];
-
+    int[] values = new int[100];
     Random random = new Random();
-
-    for (var i = 0; i < array.GetLength(0); i++)
+    int b=0;
+    for (int i = 0; i < values.Length; i++)
     {
-        for (var j = 0; j < array.GetLength(1); j++)
+        values[i] = b++;
+        
+    }
+    for (int i = 0; i < values.Length; i++)
+    {
+        
+        int randomIndex=random.Next(10,100);
+        values[i]=values[randomIndex];
+
+    }
+    int index = 0;
+
+
+    for (int i = 0; i < array.GetLength(0); i++)
+    {
+        for (int j = 0; j < array.GetLength(1); j++)
         {
             for (int p = 0; p < array.GetLength(2); p++)
             {
-                array[i, j, p] = random.Next(10, 99);
+                array[i,j,p] = values[index++];
+                      
             }
 
+            
         }
-    }
 
-    return array;
+    }   
+    return array;   
 }
+
 
 void Print3DArray(int[,,] array)
 {
@@ -45,7 +63,7 @@ void Print3DArray(int[,,] array)
         {
             for (int j = 0; j < array.GetLength(1); j++)
             {
-                Console.Write($"{array[i, j, p]} {(i,j,p)} ");
+                Console.Write($"{array[i, j, p]} {(i, j, p)} ");
             }
             Console.WriteLine();
         }
